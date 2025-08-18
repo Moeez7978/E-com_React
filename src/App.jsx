@@ -1,4 +1,4 @@
->>>>>>> Awais_branch
+
 import './App.css'
 import About from "./About"
 import Products from "./Products"
