@@ -10,14 +10,6 @@ function App() {
   return (
     <>
       <BrowserRouter>
-<<<<<<< HEAD
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/Contact" element={<Contact/>}/>
-        <Route path="/Cart" element={<Cart/>}/>
-      </Routes>
-      </BrowserRouter>
-=======
         <Routes>
         <Route path = "/About" element = {<About/>}/>
         <Route path = "/Products" element = {<Products/>} />
@@ -25,10 +17,10 @@ function App() {
 
 
         </Routes>
-        </BrowserRouter>
->>>>>>> Awais_branch
+      </BrowserRouter>
     </>
   )
 }
 
 export default App
+
