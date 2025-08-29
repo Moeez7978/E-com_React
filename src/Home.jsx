@@ -1,9 +1,15 @@
 import React from 'react'
-
+import HeroSection from './components/HeroSection'
+import Services from './components/Services'
+import Trusted from './components/Trusted'  
+import FeatureProducts from './components/FeatureProducts'
 const Home = () => {
   return (
     <>
-      <div><h1>HOME</h1></div>
+      <HeroSection/>
+      <FeatureProducts/>
+      <Services/>
+      <Trusted/>
     </>
   )
 }
