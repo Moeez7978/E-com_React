@@ -17,7 +17,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename='E-com_React'>
       <Header/>
       <Routes>
         <Route path="/" element={<Home/>}/>

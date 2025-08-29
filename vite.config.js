@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  base: "/E-com_React/",
+  base: "/E-com_React",
 })
 
 // https://vite.dev/config/
