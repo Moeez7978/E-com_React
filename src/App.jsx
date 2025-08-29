@@ -10,12 +10,6 @@ import Footer from './components/Footer'
 import SingleProduct from './SingleProduct'
 import './App.css'
 
-import ErrorPage from './ErrorPage'
-
-import Products from './Products'
-import SingleProduct from './SingleProduct'
-import About from './About'
-
 
 function App() {
   const [count, setCount] = useState(0)
