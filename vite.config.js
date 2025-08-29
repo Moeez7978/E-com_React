@@ -7,7 +7,8 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     port: 3000,
-  }
+  },
+  base: "/E-com_React/",
 })
 
 // https://vite.dev/config/

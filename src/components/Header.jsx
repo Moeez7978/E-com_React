@@ -83,7 +83,7 @@ const Header = () => {
           <li>
             <NavLink to="/Cart" className="navlink text-purple-500 relative" onClick={toggleMenu}>
               <FiShoppingCart className='relative text-2xl' />
-              <span className='cart-total absolute w-5 h-5 text-white bg-red-500 rounded-full flex justify-center items-center -top-3 -right-3 text-sm'>10</span>
+              <span className='cart-total absolute w-5 h-5 text-white bg-red-500 rounded-full flex justify-center items-center -top-3 -right-3 text-sm'>{total_items}</span>
             </NavLink>
           </li>
         </ul>
