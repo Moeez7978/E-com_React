@@ -27,14 +27,19 @@
 // export default Product
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import {motion} from 'framer-motion'
 const Product = ({ id, name, image, price, category }) => {
   return (
-    <div className="flex flex-wrap justify-center items-center p-4 mx-auto">
+    <motion.div className="flex flex-wrap justify-center items-center p-4 mx-auto" initial={{ opacity: 0, y: 50 }}
+    animate={{ opacity: 1, y: 0 }}
+    whileHover={{ scale: 1.05 }}
+    transition={{ duration: 0.4, ease: "easeOut" }}
+    >
       <NavLink to={`/singleproduct/${id}`} className="w-full max-w-sm">
         <div className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
           <figure className="relative">
-            <img src={image} alt={name} className="w-full h-48 object-cover rounded-t-xl" />
+            <motion.img src={image} alt={name} className="w-full h-48 object-cover rounded-t-xl"  whileHover={{ scale: 1.1 }}
+      transition={{ duration: 0.3 }}/>
             <figcaption className="absolute top-2 left-2 bg-black bg-opacity-60 text-white text-xs px-2 py-1 rounded">
               {category}
             </figcaption>
@@ -45,7 +50,7 @@ const Product = ({ id, name, image, price, category }) => {
           </div>
         </div>
       </NavLink>
-    </div>
+    </motion.div>
   );
 };
 

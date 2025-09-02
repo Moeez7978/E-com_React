@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useProductContext } from './productContext';
 import FilterPane from '/src/components/FilterPane';
 
@@ -80,7 +81,14 @@ const Products = () => {
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">All Products</h1>
+      <motion.h1
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-3xl font-bold text-gray-800 mb-6"
+      >
+        All Products
+      </motion.h1>
 
       <div className="flex flex-col md:flex-row gap-8">
         {/* 🔍 Filter Pane */}
@@ -145,44 +153,66 @@ const Products = () => {
           </div>
 
           {/* Product Cards */}
-          <div
+          <motion.div
+            layout
             className={`grid ${
               viewMode === 'grid'
                 ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'
                 : 'grid-cols-1 gap-4'
             }`}
           >
-            {sortedProducts.length > 0 ? (
-              sortedProducts.map((product) => (
-                <Link
-                  to={`/singleproduct/${product.id}`}
-                  key={product.id}
-                  className={`bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 overflow-hidden ${
-                    viewMode === 'list' ? 'flex items-center gap-4 p-4' : ''
-                  }`}
+            <AnimatePresence>
+              {sortedProducts.length > 0 ? (
+                sortedProducts.map((product) => (
+                  <motion.div
+                    key={product.id}
+                    layout
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 30 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <Link
+                      to={`/singleproduct/${product.id}`}
+                      className={`bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 overflow-hidden ${
+                        viewMode === 'list' ? 'flex items-center gap-4 p-4' : ''
+                      }`}
+                    >
+                      <motion.img
+                        src={product.image}
+                        alt={product.name}
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
+                        className={`${
+                          viewMode === 'list'
+                            ? 'w-32 h-32 object-cover rounded'
+                            : 'w-full h-48 object-cover'
+                        }`}
+                      />
+                      <div className={`${viewMode === 'list' ? 'flex-1' : 'p-4'}`}>
+                        <motion.h2
+                          whileHover={{ color: '#2563eb' }}
+                          className="text-lg font-semibold text-gray-800"
+                        >
+                          {product.name}
+                        </motion.h2>
+                        <p className="text-sm text-gray-500 mb-2 capitalize">By {product.company}</p>
+                        <div className="text-green-600 font-bold text-md">₹{product.price}</div>
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center text-gray-500 col-span-full"
                 >
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className={`${
-                      viewMode === 'list'
-                        ? 'w-32 h-32 object-cover rounded'
-                        : 'w-full h-48 object-cover'
-                    }`}
-                  />
-                  <div className={`${viewMode === 'list' ? 'flex-1' : 'p-4'}`}>
-                    <h2 className="text-lg font-semibold text-gray-800">{product.name}</h2>
-                    <p className="text-sm text-gray-500 mb-2 capitalize">By {product.company}</p>
-                    <div className="text-green-600 font-bold text-md">₹{product.price}</div>
-                  </div>
-                </Link>
-              ))
-            ) : (
-              <div className="text-center text-gray-500 col-span-full">
-                No products match your filters.
-              </div>
-            )}
-          </div>
+                  No products match your filters.
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </div>
     </section>
