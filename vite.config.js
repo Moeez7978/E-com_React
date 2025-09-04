@@ -8,6 +8,15 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  test: {
+    globals: true,
+    environment: "jsdom",   // so window + DOM APIs exist
+    setupFiles: "./setupTests.js", // 👈 add this
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json", "html"],
+    },
+  },
   base: "/E-com_React",
 })
 
